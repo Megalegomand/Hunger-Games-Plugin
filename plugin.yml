@@ -6,10 +6,8 @@ description: >
 commands:
  hungergames:
    description: Hungergames main
-   usage: /hungergames (command) (args)
  hg:
    description: Hungergames main
-   usage: /hg (command) (args)
 
 permissions:
   hungergames.admin:

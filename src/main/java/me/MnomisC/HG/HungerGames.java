@@ -33,15 +33,19 @@ public class HungerGames extends JavaPlugin {
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 
 		if (commandLabel.equalsIgnoreCase("hungergames") || commandLabel.equalsIgnoreCase("hg")) {
-			if (args[0].equalsIgnoreCase("help")) {
-				if (sender.hasPermission("hungergames.admin") || sender.isOp()
-				        || sender instanceof ConsoleCommandSender) {
-					if (args.length == 2) {
-						help.admin(sender, Integer.parseInt(args[1]));
-					} else {
-						help.admin(sender, 1);
+			if (!(args.length == 0)) {
+				if (args[0].equalsIgnoreCase("help")) {
+					if (sender.hasPermission("hungergames.admin") || sender.isOp()
+					        || sender instanceof ConsoleCommandSender) {
+						if (args.length == 2) {
+							help.admin(sender, Integer.parseInt(args[1]));
+						} else {
+							help.admin(sender, 1);
+						}
 					}
 				}
+			} else {
+				help.admin(sender, 1);
 			}
 		}
 
