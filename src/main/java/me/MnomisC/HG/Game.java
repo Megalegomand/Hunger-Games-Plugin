@@ -13,6 +13,8 @@ public class Game {
 	public void joinGame(Player player) {
 		
 		players.put(player, "lol");
-		hg.sendMessage(ChatColor.GREEN + "Succesfully joined the game!", player);
+		hg.sendMessage(
+				ChatColor.GREEN + "Succesfully joined the game!",
+				player);
 	}
 }
