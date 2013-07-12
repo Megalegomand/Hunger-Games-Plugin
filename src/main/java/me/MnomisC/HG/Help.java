@@ -4,7 +4,7 @@ import org.bukkit.command.CommandSender;
 
 public class Help {
 
-	String[] adminHelp = { "/hg random - Is awesome", "/hg LOL - dasjjsadj" };
+	String[] adminHelp = { "/hg help - To get this screen", "/hg join - To get to main lobby"};
 	int pages = 1;
 
 	public void help(CommandSender sender) {
