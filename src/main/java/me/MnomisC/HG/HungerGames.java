@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,6 +14,8 @@ public class HungerGames extends JavaPlugin {
 	public static HungerGames plugin;
 	public Help help = new Help();
 	public Game game = new Game();
+	public String sendMessage = ChatColor.AQUA + "[" + ChatColor.GOLD + "HungerGames"
+	        + ChatColor.AQUA + "] " + ChatColor.WHITE;
 
 	@Override
 	public void onDisable() {
@@ -38,7 +39,25 @@ public class HungerGames extends JavaPlugin {
 				if (args[0].equalsIgnoreCase("help")) {
 					help.help(sender);
 				} else if (args[0].equalsIgnoreCase("join")) {
-					game.joinGame((Player) sender);
+					try {
+						if (game.joinGame(sender)) {
+
+							sendMessage(ChatColor.GREEN + "Succeesfully joined the game!", sender);
+						} else
+							sendMessage(ChatColor.RED + "You are already in a game", sender);
+					} catch (Exception e) {
+						sendMessage(ChatColor.RED + "Something went wrong! Try again!", sender);
+						e.printStackTrace();
+					}
+				} else if (args[0].equalsIgnoreCase("leave")) {
+					if (game.leaveGame(sender)) {
+						
+						sendMessage(ChatColor.GREEN + "Succesfully leaved the game!", sender);
+					} else {
+						
+						sendMessage(ChatColor.RED + "You are not in a game!", sender);
+					}
+					
 				} else {
 					sendMessage(ChatColor.RED + "Unknow command. Do /hg help - To get help.",
 					        sender);
@@ -54,7 +73,6 @@ public class HungerGames extends JavaPlugin {
 
 	public void sendMessage(String message, CommandSender sender) {
 
-		sender.sendMessage(ChatColor.AQUA + "[" + ChatColor.GOLD + "HungerGames" + ChatColor.AQUA
-		        + "] " + ChatColor.WHITE + message);
+		sender.sendMessage(sendMessage + message);
 	}
 }
