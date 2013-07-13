@@ -2,6 +2,8 @@ package main.java.me.MnomisC.HG;
 
 import java.util.logging.Logger;
 
+import main.java.me.MnomisC.HG.File.Data;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -14,12 +16,15 @@ public class HungerGames extends JavaPlugin {
 	public static HungerGames plugin;
 	public Help help = new Help();
 	public Game game = new Game();
+	private Data data = new Data();
 	public String sendMessage = ChatColor.AQUA + "[" + ChatColor.GOLD + "HungerGames"
 	        + ChatColor.AQUA + "] " + ChatColor.WHITE;
 
 	@Override
 	public void onDisable() {
 
+		data.save();
+		
 		PluginDescriptionFile pdfFile = this.getDescription();
 		this.logger.info(pdfFile.getName() + "has been disabled");
 	}
@@ -27,6 +32,8 @@ public class HungerGames extends JavaPlugin {
 	@Override
 	public void onEnable() {
 
+		data.initializeFiles();
+		
 		PluginDescriptionFile pdfFile = this.getDescription();
 		this.logger.info(pdfFile.getName() + pdfFile.getName() + "has been ebabled");
 	}
