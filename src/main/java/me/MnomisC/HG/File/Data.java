@@ -21,18 +21,18 @@ public class Data {
 	
 	public void initializeFiles() {
 		
-		dataFile = new File(this.plugin.getDataFolder(), "data.yml");
+		//dataFile = new File(this.plugin.getDataFolder(), "data.yml");
 		
-		if (!dataFile.exists()) {
+		//if (!dataFile.exists()) {
 			this.plugin.saveResource("data.yml", false);
-		}
+		//}
 		
-		data = new YamlConfiguration();
+		//data = new YamlConfiguration();
 
-		load();
+		//load();
 	}
 	
-	public void load() {
+	/*public void load() {
 		try {
 			data.load(dataFile);
 		} catch (Exception e) {
@@ -46,7 +46,7 @@ public class Data {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	public Data getInstance() {
 		

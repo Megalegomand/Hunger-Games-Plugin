@@ -25,7 +25,7 @@ public class HungerGames extends JavaPlugin {
 	@Override
 	public void onDisable() {
 		
-		data.save();
+		//data.save();
 		
 		PluginDescriptionFile pdfFile = this.getDescription();
 		this.logger.info(pdfFile.getName() + "has been disabled");
