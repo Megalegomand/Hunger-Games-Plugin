@@ -21,7 +21,7 @@ public class Data {
 	
 	public void initializeFiles() {
 		
-		dataFile = new File(plugin.getDataFolder(), "data.yml");
+		dataFile = new File(this.plugin.getDataFolder(), "data.yml");
 		
 		if (!dataFile.exists()) {
 			this.plugin.saveResource("data.yml", false);
