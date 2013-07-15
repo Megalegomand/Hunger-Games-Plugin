@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 
 public class Lobby {
 
-	Data data = new Data();
+	/*Data data = new Data();
 	FileConfiguration dataCon = data.data;
 	public Location lobbyLoc;
 	
@@ -22,5 +22,5 @@ public class Lobby {
 		dataCon.set("lobbyLoc.pitch", lobbyLoc.getPitch());
 		
 		return null;
-	}
+	}*/
 }

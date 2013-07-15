@@ -34,7 +34,7 @@ public class HungerGames extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		
-		data = new Data();
+		data = new Data(plugin);
 		
 		data.initializeFiles();
 		
@@ -71,7 +71,7 @@ public class HungerGames extends JavaPlugin {
 					
 				} else if (args[0].equalsIgnoreCase("setlobby")) {
 					
-					lobby.setLobby((Player) sender);
+					//lobby.setLobby((Player) sender);
 			}else {
 					sendMessage(ChatColor.RED + "Unknow command. Do /hg help - To get help.",
 					        sender);

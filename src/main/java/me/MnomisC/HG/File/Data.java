@@ -4,27 +4,27 @@ import java.io.File;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
 
 import main.java.me.MnomisC.HG.HungerGames;
 
 public class Data {
 
-	HungerGames hg;
+	Plugin plugin;
 	File dataFile;
 	public FileConfiguration data;
-
-	public Data() {
-		hg = hg.getInstance();
+	
+	public Data(Plugin plugin) {
+		
+		this.plugin = plugin;
 	}
 	
 	public void initializeFiles() {
-
 		
-		
-		dataFile = new File(hg.getDataFolder(), "data.yml");
+		dataFile = new File(plugin.getDataFolder(), "data.yml");
 		
 		if (!dataFile.exists()) {
-			hg.saveResource("data.yml", false);
+			this.plugin.saveResource("data.yml", false);
 		}
 		
 		data = new YamlConfiguration();
