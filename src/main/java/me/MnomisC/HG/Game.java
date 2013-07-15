@@ -34,4 +34,9 @@ public class Game {
 			return false;
 		}
 	}
+	
+	public void createWorld() {
+		
+		
+	}
 }

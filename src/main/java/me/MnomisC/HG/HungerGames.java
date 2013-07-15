@@ -7,6 +7,7 @@ import main.java.me.MnomisC.HG.File.Data;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,15 +15,16 @@ public class HungerGames extends JavaPlugin {
 
 	public final Logger logger = Logger.getLogger("Minecraft");
 	public static HungerGames plugin;
-	public Help help = new Help();
-	public Game game = new Game();
-	private Data data = new Data();
+	public Help help;
+	public Game game;
+	private Data data;
+	private Lobby lobby;
 	public String sendMessage = ChatColor.AQUA + "[" + ChatColor.GOLD + "HungerGames"
 	        + ChatColor.AQUA + "] " + ChatColor.WHITE;
 
 	@Override
 	public void onDisable() {
-
+		
 		data.save();
 		
 		PluginDescriptionFile pdfFile = this.getDescription();
@@ -31,7 +33,12 @@ public class HungerGames extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-
+		
+		help = new Help();
+		game = new Game();
+		data = new Data();
+		lobby = new Lobby();
+		
 		data.initializeFiles();
 		
 		PluginDescriptionFile pdfFile = this.getDescription();
@@ -65,7 +72,10 @@ public class HungerGames extends JavaPlugin {
 						sendMessage(ChatColor.RED + "You are not in a game!", sender);
 					}
 					
-				} else {
+				} else if (args[0].equalsIgnoreCase("setlobby")) {
+					
+					lobby.setLobby((Player) sender);
+			}else {
 					sendMessage(ChatColor.RED + "Unknow command. Do /hg help - To get help.",
 					        sender);
 				}
@@ -76,6 +86,11 @@ public class HungerGames extends JavaPlugin {
 
 		return false;
 
+	}
+	
+	public String getPluginName() {
+		
+		return this.getDescription().getName();
 	}
 
 	public void sendMessage(String message, CommandSender sender) {

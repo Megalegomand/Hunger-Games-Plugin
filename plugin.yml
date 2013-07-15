@@ -1,6 +1,7 @@
 name: HungerGames
 main: main.java.me.MnomisC.HG.HungerGames
 version: 1.0
+depend: [Multiverse-Core]
 description: >
   Hungergames plugin
 commands:
