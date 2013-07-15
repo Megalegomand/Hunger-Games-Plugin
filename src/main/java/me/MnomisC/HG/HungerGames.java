@@ -34,10 +34,7 @@ public class HungerGames extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		
-		help = new Help();
-		game = new Game();
 		data = new Data();
-		lobby = new Lobby();
 		
 		data.initializeFiles();
 		
@@ -96,5 +93,10 @@ public class HungerGames extends JavaPlugin {
 	public void sendMessage(String message, CommandSender sender) {
 
 		sender.sendMessage(sendMessage + message);
+	}
+	
+	public HungerGames getInstance() {
+		
+		return this;
 	}
 }

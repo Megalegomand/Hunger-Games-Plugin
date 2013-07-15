@@ -1,9 +1,6 @@
 package main.java.me.MnomisC.HG.File;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,45 +9,27 @@ import main.java.me.MnomisC.HG.HungerGames;
 
 public class Data {
 
-	HungerGames hg = new HungerGames();
+	HungerGames hg;
 	File dataFile;
 	public FileConfiguration data;
 
+	public Data() {
+		hg = hg.getInstance();
+	}
+	
 	public void initializeFiles() {
 
+		
+		
 		dataFile = new File(hg.getDataFolder(), "data.yml");
 		
-		try {
-			firstRun();
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (!dataFile.exists()) {
+			hg.saveResource("data.yml", false);
 		}
 		
 		data = new YamlConfiguration();
 
 		load();
-	}
-	
-	private void firstRun() throws Exception {
-		if (!dataFile.exists()) {
-			dataFile.getParentFile().mkdir();
-			copy(this.getClass().getResourceAsStream("data.yml"), dataFile);
-		}
-	}
-	
-	private void copy(InputStream in, File file) {
-		try {
-			OutputStream out = new FileOutputStream(file);
-			byte[] buf = new byte[1024];
-			int len;
-			while ((len = in.read(buf)) > 0) {
-				out.write(buf, 0, len);
-			}
-			out.close();
-			in.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public void load() {
@@ -67,5 +46,10 @@ public class Data {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Data getInstance() {
+		
+		return this;
 	}
 }
